@@ -1,0 +1,1736 @@
+[
+    {
+        "id": "20188638.e58aea",
+        "type": "tab",
+        "label": "流程1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "32aac44b.a17804",
+        "type": "http in",
+        "z": "20188638.e58aea",
+        "name": "Route : getnodered",
+        "url": "/getnodered",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "7c7096eb.fd2998",
+                "e97dd1f0.a7fc48"
+            ]
+        ]
+    },
+    {
+        "id": "7c7096eb.fd2998",
+        "type": "debug",
+        "z": "20188638.e58aea",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "b69ce2f.206722",
+        "type": "http response",
+        "z": "20188638.e58aea",
+        "name": "完成要求",
+        "statusCode": "200",
+        "headers": {},
+        "x": 320,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "e97dd1f0.a7fc48",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "HTTP處理",
+        "func": "msg.payload = \"車站\"+msg.payload.StartStation + \"有人要搭乘\";\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "3333c4f6.577b6c",
+                "b69ce2f.206722",
+                "fb514302.935e5",
+                "c2c30139.9bfc1",
+                "4a902396.bd6bd4"
+            ]
+        ]
+    },
+    {
+        "id": "3333c4f6.577b6c",
+        "type": "debug",
+        "z": "20188638.e58aea",
+        "name": "name",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "fb514302.935e5",
+        "type": "ui_audio",
+        "z": "20188638.e58aea",
+        "name": "",
+        "group": "5ddd9934.f53628",
+        "voice": "urn:moz-tts:sapi:Microsoft Hanhan Desktop - Chinese (Taiwan)?zh-TW",
+        "always": true,
+        "x": 320,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "c2c30139.9bfc1",
+        "type": "ui_toast",
+        "z": "20188638.e58aea",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "orange",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 350,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "4a902396.bd6bd4",
+        "type": "ui_text",
+        "z": "20188638.e58aea",
+        "group": "5ddd9934.f53628",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "車線",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 310,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "30ea0199.e8bf6e",
+        "type": "comment",
+        "z": "20188638.e58aea",
+        "name": "http://127.0.0.1:1880/getnodered",
+        "info": "",
+        "x": 180,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "a582d3c8.e5ccf",
+        "type": "inject",
+        "z": "20188638.e58aea",
+        "name": "Reset",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "*/1 0 * * *",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": " ",
+        "payloadType": "str",
+        "x": 120,
+        "y": 140,
+        "wires": [
+            [
+                "4a902396.bd6bd4"
+            ]
+        ]
+    },
+    {
+        "id": "0c50a2881c71aad8",
+        "type": "comment",
+        "z": "20188638.e58aea",
+        "name": "http://127.0.0.1:1880/cardid",
+        "info": "",
+        "x": 630,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "8fd3688cf9607eeb",
+        "type": "http in",
+        "z": "20188638.e58aea",
+        "name": "Route : cardid",
+        "url": "/cardid",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 580,
+        "y": 60,
+        "wires": [
+            [
+                "7a249253783ec1a2",
+                "7202f343346011bf"
+            ]
+        ]
+    },
+    {
+        "id": "7202f343346011bf",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "HTTP處理",
+        "func": "msg.payload = \"卡號\"+msg.payload.cardID + \"上車\";\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 100,
+        "wires": [
+            [
+                "2b03dcfd4352257d",
+                "d14e83f7a5c65152",
+                "9a65227d771186c3",
+                "d9f96b1ebf1d5b44",
+                "b9f8babd1a82014a"
+            ]
+        ]
+    },
+    {
+        "id": "a908887b82ac147c",
+        "type": "inject",
+        "z": "20188638.e58aea",
+        "name": "Reset",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "*/1 0 * * *",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": " ",
+        "payloadType": "str",
+        "x": 590,
+        "y": 140,
+        "wires": [
+            [
+                "d9f96b1ebf1d5b44",
+                "0ddc766b820c038a"
+            ]
+        ]
+    },
+    {
+        "id": "7a249253783ec1a2",
+        "type": "debug",
+        "z": "20188638.e58aea",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "2b03dcfd4352257d",
+        "type": "debug",
+        "z": "20188638.e58aea",
+        "name": "name",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "d9f96b1ebf1d5b44",
+        "type": "ui_text",
+        "z": "20188638.e58aea",
+        "group": "c982fbb8.1deb38",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "卡號",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 780,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "d14e83f7a5c65152",
+        "type": "ui_audio",
+        "z": "20188638.e58aea",
+        "name": "",
+        "group": "5ddd9934.f53628",
+        "voice": "urn:moz-tts:sapi:Microsoft Hanhan Desktop - Chinese (Taiwan)?zh-TW",
+        "always": true,
+        "x": 790,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "9a65227d771186c3",
+        "type": "ui_toast",
+        "z": "20188638.e58aea",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "orange",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 810,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b9f8babd1a82014a",
+        "type": "http response",
+        "z": "20188638.e58aea",
+        "name": "完成要求",
+        "statusCode": "200",
+        "headers": {},
+        "x": 790,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "0ddc766b820c038a",
+        "type": "ui_template",
+        "z": "20188638.e58aea",
+        "group": "ce6fec9e54c6cc6b",
+        "name": "Clock Toolbar",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "format": "<script id=\"titleScript\" type=\"text/javascript\">\n\n$(function() {\n    if($('.md-toolbar-tools').length != 0){\n        loadClock();\n    }else setTimeout(loadClock, 500)\n});\n\nfunction loadClock(){\n    $('#clock').remove();\n    var toolbar = $('.md-toolbar-tools');\n    \n    var div = $('<div/>');\n    var p = $('<p/ id=\"clock\">');\n    \n    div.append(p);\n    div[0].style.margin = '5px 5px 5px auto';\n    toolbar.append(div);\n\n    function displayTitle(lh) {\n        p.text(lh); \n    }\n    \n    function upTime() {\n        var d = new Date();\n        p.text(d.toLocaleString());\n    }\n\n    if(document.clockInterval){ \n            clearInterval(document.clockInterval);\n            document.clockInterval = null;\n    }\n        \n    document.clockInterval = setInterval(upTime,1000);\n}\n\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "global",
+        "className": "",
+        "x": 800,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ae0f63f7ac723add",
+        "type": "comment",
+        "z": "20188638.e58aea",
+        "name": "http://127.0.0.1:1880/people",
+        "info": "",
+        "x": 1080,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "560d8feb2df19dc5",
+        "type": "http in",
+        "z": "20188638.e58aea",
+        "name": "Route : getnodered",
+        "url": "/people",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 1050,
+        "y": 60,
+        "wires": [
+            [
+                "edf9cf0368500619",
+                "19bfe67478b2cac7",
+                "610cdb5dadcaf079",
+                "f635dd73b56fa92d"
+            ]
+        ]
+    },
+    {
+        "id": "19bfe67478b2cac7",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "HTTP處理",
+        "func": "msg.payload = \"車線\"+msg.payload.BusLine + \"總共有\" + msg.payload.People +\"人搭乘\";\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1030,
+        "y": 100,
+        "wires": [
+            [
+                "e89d843f0862ebea",
+                "fa97918e05e169a6",
+                "c82a37516e3b77c0",
+                "2d5882516861b5ef",
+                "f8298463a78a7523",
+                "610cdb5dadcaf079",
+                "f635dd73b56fa92d"
+            ]
+        ]
+    },
+    {
+        "id": "817da362c80b5e48",
+        "type": "inject",
+        "z": "20188638.e58aea",
+        "name": "Reset",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "*/1 0 * * *",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": " ",
+        "payloadType": "str",
+        "x": 1040,
+        "y": 140,
+        "wires": [
+            [
+                "fa97918e05e169a6",
+                "2d5882516861b5ef",
+                "f8298463a78a7523",
+                "610cdb5dadcaf079",
+                "f635dd73b56fa92d"
+            ]
+        ]
+    },
+    {
+        "id": "fa97918e05e169a6",
+        "type": "ui_toast",
+        "z": "20188638.e58aea",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "orange",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1270,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "e89d843f0862ebea",
+        "type": "debug",
+        "z": "20188638.e58aea",
+        "name": "name",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1230,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "edf9cf0368500619",
+        "type": "debug",
+        "z": "20188638.e58aea",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1250,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "c82a37516e3b77c0",
+        "type": "http response",
+        "z": "20188638.e58aea",
+        "name": "完成要求",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1230,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "2d5882516861b5ef",
+        "type": "ui_audio",
+        "z": "20188638.e58aea",
+        "name": "",
+        "group": "5ddd9934.f53628",
+        "voice": "urn:moz-tts:sapi:Microsoft Hanhan Desktop - Chinese (Taiwan)?zh-TW",
+        "always": true,
+        "x": 1240,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "f8298463a78a7523",
+        "type": "ui_text",
+        "z": "20188638.e58aea",
+        "group": "f9761157696ecb7d",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "總人數",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1230,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "610cdb5dadcaf079",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "total_people-1",
+        "func": "msg.topic = \"SELECT total_people FROM total WHERE line='1579A'\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 340,
+        "wires": [
+            [
+                "fbb5e2cd90caef54"
+            ]
+        ]
+    },
+    {
+        "id": "1c4aa216da53c0b6",
+        "type": "ui_gauge",
+        "z": "20188638.e58aea",
+        "name": "",
+        "group": "f9761157696ecb7d",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "1579A總人數",
+        "label": "units",
+        "format": "{{msg.payload[0].total_people}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1990,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "fbb5e2cd90caef54",
+        "type": "mysql",
+        "z": "20188638.e58aea",
+        "mydb": "a27513cc28b5c626",
+        "name": "",
+        "x": 1410,
+        "y": 340,
+        "wires": [
+            [
+                "04fbde08465c1da2"
+            ]
+        ]
+    },
+    {
+        "id": "04fbde08465c1da2",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "total_people-2",
+        "func": "var total = msg.payload[0].total_people;\nmsg.payload.total_people = total;\n\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1580,
+        "y": 340,
+        "wires": [
+            [
+                "3acc3526714cb3cb"
+            ]
+        ]
+    },
+    {
+        "id": "3acc3526714cb3cb",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "total_people-3",
+        "func": "var people = msg.payload[0].total_people;\n\nif(people == 50)\n    msg.word = \"人數已滿!!!\";\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1780,
+        "y": 340,
+        "wires": [
+            [
+                "1c4aa216da53c0b6",
+                "2b7849eafa58f996",
+                "949f4ee229ef9e7e"
+            ]
+        ]
+    },
+    {
+        "id": "2b7849eafa58f996",
+        "type": "debug",
+        "z": "20188638.e58aea",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1980,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "f635dd73b56fa92d",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "total_people-1",
+        "func": "msg.topic = \"SELECT total_people FROM total WHERE line='1579B'\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1240,
+        "y": 380,
+        "wires": [
+            [
+                "da4a6965e8c3c0f0"
+            ]
+        ]
+    },
+    {
+        "id": "d1f37ba1c36dc65d",
+        "type": "ui_gauge",
+        "z": "20188638.e58aea",
+        "name": "",
+        "group": "f9761157696ecb7d",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "1579B總人數",
+        "label": "units",
+        "format": "{{msg.payload[0].total_people}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1990,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "da4a6965e8c3c0f0",
+        "type": "mysql",
+        "z": "20188638.e58aea",
+        "mydb": "a27513cc28b5c626",
+        "name": "",
+        "x": 1410,
+        "y": 380,
+        "wires": [
+            [
+                "38b6bcc54749ee84"
+            ]
+        ]
+    },
+    {
+        "id": "38b6bcc54749ee84",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "total_people-2",
+        "func": "var total = msg.payload[0].total_people;\nmsg.payload.total_people = total;\n\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1580,
+        "y": 380,
+        "wires": [
+            [
+                "1fd250d99163d508"
+            ]
+        ]
+    },
+    {
+        "id": "1fd250d99163d508",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "total_people-3",
+        "func": "var people = msg.payload[0].total_people;\n\nif(people == 50)\n    msg.word = \"人數已滿!!!\";\n\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1780,
+        "y": 380,
+        "wires": [
+            [
+                "d1f37ba1c36dc65d",
+                "a1db604baabec6d2",
+                "f1ab7e4494abf8cf"
+            ]
+        ]
+    },
+    {
+        "id": "a1db604baabec6d2",
+        "type": "debug",
+        "z": "20188638.e58aea",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1980,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "fa06fd7b78d5700b",
+        "type": "ui_button",
+        "z": "20188638.e58aea",
+        "name": "",
+        "group": "abe152ee4523636c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "1579A-各站歸零",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 100,
+        "y": 440,
+        "wires": [
+            [
+                "7a84dd65b4ae991a"
+            ]
+        ]
+    },
+    {
+        "id": "7a84dd65b4ae991a",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "1579A-zero",
+        "func": "msg.topic = \"UPDATE 1579A SET 預約人數=0 WHERE 預約人數>0\";\n \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 440,
+        "wires": [
+            [
+                "41fd5523c9ae90b2"
+            ]
+        ]
+    },
+    {
+        "id": "41fd5523c9ae90b2",
+        "type": "mysql",
+        "z": "20188638.e58aea",
+        "mydb": "a27513cc28b5c626",
+        "name": "",
+        "x": 410,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e7dd4d1e279d14ab",
+        "type": "mysql",
+        "z": "20188638.e58aea",
+        "mydb": "a27513cc28b5c626",
+        "name": "",
+        "x": 410,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7268932be8605236",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "1579B-zero",
+        "func": "msg.topic = \"UPDATE 1579B SET 預約人數=0 WHERE 預約人數>0\";\n \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 500,
+        "wires": [
+            [
+                "e7dd4d1e279d14ab"
+            ]
+        ]
+    },
+    {
+        "id": "760f650c9fba95da",
+        "type": "ui_button",
+        "z": "20188638.e58aea",
+        "name": "",
+        "group": "abe152ee4523636c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "1579B-各站歸零",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 100,
+        "y": 500,
+        "wires": [
+            [
+                "7268932be8605236"
+            ]
+        ]
+    },
+    {
+        "id": "82c5c2e68c8c03c7",
+        "type": "ui_button",
+        "z": "20188638.e58aea",
+        "name": "",
+        "group": "abe152ee4523636c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "總人數歸零",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 560,
+        "wires": [
+            [
+                "fa2375b989f52954"
+            ]
+        ]
+    },
+    {
+        "id": "fa2375b989f52954",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "total-zero",
+        "func": "msg.topic = \"UPDATE total SET total_people=0 WHERE total_people>0\";\n \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 560,
+        "wires": [
+            [
+                "6d608879efa768c9"
+            ]
+        ]
+    },
+    {
+        "id": "6d608879efa768c9",
+        "type": "mysql",
+        "z": "20188638.e58aea",
+        "mydb": "a27513cc28b5c626",
+        "name": "",
+        "x": 410,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e9f6946b079d628d",
+        "type": "ui_button",
+        "z": "20188638.e58aea",
+        "name": "",
+        "group": "abe152ee4523636c",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "座標歸零",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 620,
+        "wires": [
+            [
+                "0ed50a152d35e6e5"
+            ]
+        ]
+    },
+    {
+        "id": "0ed50a152d35e6e5",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "position-zero",
+        "func": "msg.topic = \"UPDATE position SET address=0 WHERE address>0\";\n \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 620,
+        "wires": [
+            [
+                "8646aa0628f283a6"
+            ]
+        ]
+    },
+    {
+        "id": "8646aa0628f283a6",
+        "type": "mysql",
+        "z": "20188638.e58aea",
+        "mydb": "a27513cc28b5c626",
+        "name": "",
+        "x": 410,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "af75aada4080a050",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "1579A-1",
+        "func": "msg.topic = \"UPDATE position SET address=address+0.1 WHERE line='1579A'\";\n \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 760,
+        "wires": [
+            [
+                "d729dc5061b7bafd"
+            ]
+        ]
+    },
+    {
+        "id": "d729dc5061b7bafd",
+        "type": "mysql",
+        "z": "20188638.e58aea",
+        "mydb": "a27513cc28b5c626",
+        "name": "",
+        "x": 390,
+        "y": 760,
+        "wires": [
+            [
+                "9617f9d2e08b954a",
+                "dc8de85ad5f8d25a"
+            ]
+        ]
+    },
+    {
+        "id": "9617f9d2e08b954a",
+        "type": "debug",
+        "z": "20188638.e58aea",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "dc8de85ad5f8d25a",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "1579A-2a",
+        "func": "msg.topic = \"SELECT address FROM position WHERE line='1579A'\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 800,
+        "wires": [
+            [
+                "eca5dc122b132249"
+            ]
+        ]
+    },
+    {
+        "id": "eca5dc122b132249",
+        "type": "mysql",
+        "z": "20188638.e58aea",
+        "mydb": "a27513cc28b5c626",
+        "name": "",
+        "x": 710,
+        "y": 800,
+        "wires": [
+            [
+                "a045eef384d671ca"
+            ]
+        ]
+    },
+    {
+        "id": "a045eef384d671ca",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "1579A-2b",
+        "func": "var position = msg.payload[0].address;\nmsg.payload.address = position;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 800,
+        "wires": [
+            [
+                "912e3217413ca0d4",
+                "3cfec8ccdd6c05ff",
+                "4a8e0c0636bf5998"
+            ]
+        ]
+    },
+    {
+        "id": "912e3217413ca0d4",
+        "type": "debug",
+        "z": "20188638.e58aea",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1040,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "3cfec8ccdd6c05ff",
+        "type": "ui_gauge",
+        "z": "20188638.e58aea",
+        "name": "",
+        "group": "a042b31ae3c4eed1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "1579A",
+        "label": "units",
+        "format": "{{msg.payload[0].address}}",
+        "min": 0,
+        "max": "40",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1030,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "4a8e0c0636bf5998",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "1579A-3",
+        "func": "var id = msg.payload[0].address;\n\nif(id == 1)\n{\n\tmsg.payload = \"八斗子車站\" + \"到了!\";\n\tmsg.word = \"八斗子車站\"  + \"到了!\";\n}\nelse if(id == 2)\n{\n\tmsg.payload = \"海科館\" + \"到了!\";\n\tmsg.word = \"海科館\" + \"到了!\";\n}\nelse if(id == 3)\n{\n\tmsg.payload = \"八斗子\" + \"到了!\";\n\tmsg.word = \"八斗子\" + \"到了!\";\n}\nelse if(id == 4)\n{\n\tmsg.payload = \"嶺林巷\" + \"到了!\";\n\tmsg.word = \"嶺林巷\" + \"到了!\";\n}\nelse if(id == 5)\n{\n\tmsg.payload = \"漁貨直銷中心(碧砂漁港)\" + \"到了!\";\n\tmsg.word = \"漁貨直銷中心(碧砂漁港)\" + \"到了!\";\n}\nelse if(id == 6)\n{\n\tmsg.payload = \"藍投溝\" + \"到了!\";\n\tmsg.word = \"藍投溝\" + \"到了!\";\n}\nelse if(id == 7)\n{\n\tmsg.payload = \"北寧路(988餐廳)\" + \"到了!\";\n\tmsg.word = \"北寧路(988餐廳)\" + \"到了!\";\n}\nelse if(id == 8)\n{\n\tmsg.payload = \"海大(體育館)\" + \"到了!\";\n\tmsg.word = \"海大(體育館)\" + \"到了!\";\n}\nelse if(id == 9)\n{\n\tmsg.payload = \"海大(濱海校門)\" + \"到了!\";\n\tmsg.word = \"海大(濱海校門)\" + \"到了!\";\n}\nelse if(id == 10)\n{\n\tmsg.payload = \"海大(祥豐校門)\" + \"到了!\";\n\tmsg.word = \"海大(祥豐校門)\" + \"到了!\";\n}\nelse if(id == 11)\n{\n\tmsg.payload = \"中正路正濱路口\" + \"到了!\";\n\tmsg.word = \"中正路正濱路口\" + \"到了!\";\n}\nelse if(id == 12)\n{\n\tmsg.payload = \"二信分社\" + \"到了!\";\n\tmsg.word = \"二信分社\" + \"到了!\";\n}\nelse if(id == 13)\n{\n\tmsg.payload = \"中濱里\" + \"到了!\";\n\tmsg.word = \"中濱里\" + \"到了!\";\n}\nelse if(id == 14)\n{\n\tmsg.payload = \"公教住宅\" + \"到了!\";\n\tmsg.word = \"公教住宅\" + \"到了!\";\n}\nelse if(id == 15)\n{\n\tmsg.payload = \"安瀾橋\" + \"到了!\";\t\n\tmsg.word = \"安瀾橋\" + \"到了!\";\n}\nelse if(id == 16)\n{\n\tmsg.payload = \"中正區行政大樓\" + \"到了!\";\n\tmsg.word = \"中正區行政大樓\" + \"到了!\";\n}\nelse if(id == 17)\n{\n\tmsg.payload = \"就業中心\" + \"到了!\";\n\tmsg.word = \"就業中心\" + \"到了!\";\n}\nelse if(id == 18)\n{\n\tmsg.payload = \"信五路口\" + \"到了!\";\n\tmsg.word = \"信五路口\" + \"到了!\";\n}\nelse if(id == 19)\n{\n\tmsg.payload = \"市政府\" + \"到了!\";\n\tmsg.word = \"市政府\" + \"到了!\";\n}\nelse \n\tmsg.word = \"\";\n\n//msg.payload = msg.payload + \"到了!\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 800,
+        "wires": [
+            [
+                "4fc966068a26e18f",
+                "41052e5aa0b7ac9e",
+                "8988ea692728346c"
+            ]
+        ]
+    },
+    {
+        "id": "4fc966068a26e18f",
+        "type": "ui_text",
+        "z": "20188638.e58aea",
+        "group": "a042b31ae3c4eed1",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "1579A位置語音通報",
+        "format": "{{msg.word}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1220,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "41052e5aa0b7ac9e",
+        "type": "ui_audio",
+        "z": "20188638.e58aea",
+        "name": "",
+        "group": "a042b31ae3c4eed1",
+        "voice": "Microsoft Zhiwei - Chinese (Traditional, Taiwan)",
+        "always": false,
+        "x": 1180,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "8988ea692728346c",
+        "type": "debug",
+        "z": "20188638.e58aea",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "bd4a261528e510ac",
+        "type": "inject",
+        "z": "20188638.e58aea",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 760,
+        "wires": [
+            [
+                "af75aada4080a050"
+            ]
+        ]
+    },
+    {
+        "id": "bc14ceb569298816",
+        "type": "debug",
+        "z": "20188638.e58aea",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "e5b49ed11a6f193d",
+        "type": "inject",
+        "z": "20188638.e58aea",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 980,
+        "wires": [
+            [
+                "2884f7751e96f8bc"
+            ]
+        ]
+    },
+    {
+        "id": "2884f7751e96f8bc",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "1579B-1",
+        "func": "msg.topic = \"UPDATE position SET address = address+0.1 WHERE line='1579B'\";\n \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 980,
+        "wires": [
+            [
+                "1b7198e5aa41e6e8"
+            ]
+        ]
+    },
+    {
+        "id": "1b7198e5aa41e6e8",
+        "type": "mysql",
+        "z": "20188638.e58aea",
+        "mydb": "a27513cc28b5c626",
+        "name": "",
+        "x": 390,
+        "y": 980,
+        "wires": [
+            [
+                "25f5fa97c1ea3b9f",
+                "bc14ceb569298816"
+            ]
+        ]
+    },
+    {
+        "id": "25f5fa97c1ea3b9f",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "1579B-2a",
+        "func": "msg.topic = \"SELECT address FROM position WHERE line='1579B'\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1000,
+        "wires": [
+            [
+                "fcb4c8ef4bc4eb3c"
+            ]
+        ]
+    },
+    {
+        "id": "fcb4c8ef4bc4eb3c",
+        "type": "mysql",
+        "z": "20188638.e58aea",
+        "mydb": "a27513cc28b5c626",
+        "name": "",
+        "x": 710,
+        "y": 1000,
+        "wires": [
+            [
+                "7c3d47cc64ea1c44"
+            ]
+        ]
+    },
+    {
+        "id": "7c3d47cc64ea1c44",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "1579B-2b",
+        "func": "var position = msg.payload[0].address;\nmsg.payload.address = position;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 1000,
+        "wires": [
+            [
+                "393ab9fd5822f690",
+                "9dabd1a8fd1ac1d7",
+                "38871818d5df7eb8"
+            ]
+        ]
+    },
+    {
+        "id": "393ab9fd5822f690",
+        "type": "debug",
+        "z": "20188638.e58aea",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1040,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "9dabd1a8fd1ac1d7",
+        "type": "ui_gauge",
+        "z": "20188638.e58aea",
+        "name": "",
+        "group": "a042b31ae3c4eed1",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "1579B",
+        "label": "units",
+        "format": "{{msg.payload[0].address}}",
+        "min": 0,
+        "max": "40",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1030,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "38871818d5df7eb8",
+        "type": "function",
+        "z": "20188638.e58aea",
+        "name": "1579B-3",
+        "func": "var id = msg.payload[0].address;\n\nif(id == 1)\n{\n\tmsg.payload = \"八斗子車站\" + \"到了!\";\n\tmsg.word = \"八斗子車站\";\n}\nelse if(id == 2)\n{\n\tmsg.payload = \"海科館\" + \"到了!\";\n\tmsg.word = \"海科館\" + \"到了!\";\n}\nelse if(id == 3)\n{\n\tmsg.payload = \"八斗子\" + \"到了!\";\n\tmsg.word = \"八斗子\" + \"到了!\";\n}\nelse if(id == 4)\n{\n\tmsg.payload = \"嶺林巷\" + \"到了!\";\n\tmsg.word = \"嶺林巷\" + \"到了!\";\n}\nelse if(id == 5)\n{\n\tmsg.payload = \"漁貨直銷中心(碧砂漁港)\" + \"到了!\";\n\tmsg.word = \"漁貨直銷中心(碧砂漁港)\" + \"到了!\";\n}\nelse if(id == 6)\n{\n\tmsg.payload = \"藍投溝\" + \"到了!\";\n\tmsg.word = \"藍投溝\" + \"到了!\";\n}\nelse if(id == 7)\n{\n\tmsg.payload = \"北寧路(988餐廳)\" + \"到了!\";\n\tmsg.word = \"北寧路(988餐廳)\" + \"到了!\";\n}\nelse if(id == 8)\n{\n\tmsg.payload = \"海大(體育館)\" + \"到了!\";\n\tmsg.word = \"海大(體育館)\" + \"到了!\";\n}\nelse if(id == 9)\n{\n\tmsg.payload = \"海大(濱海校門)\" + \"到了!\";\n\tmsg.word = \"海大(濱海校門)\" + \"到了!\";\n}\nelse if(id == 10)\n{\n\tmsg.payload = \"海大(祥豐校門)\" + \"到了!\";\n\tmsg.word = \"海大(祥豐校門)\" + \"到了!\";\n}\nelse if(id == 11)\n{\n\tmsg.payload = \"二信中學\" + \"到了!\";\n\tmsg.word = \"二信中學\" + \"到了!\";\n}\nelse if(id == 12)\n{\n\tmsg.payload = \"祥豐市場\" + \"到了!\";\n\tmsg.word = \"祥豐市場\" + \"到了!\";\n}\nelse if(id == 13)\n{\n\tmsg.payload = \"天主堂\" + \"到了!\";\n\tmsg.word = \"天主堂\" + \"到了!\";\n}\nelse if(id == 14)\n{\n\tmsg.payload = \"就業中心\" + \"到了!\";\n\tmsg.word = \"就業中心\" + \"到了!\";\n}\nelse if(id == 15)\n{\n\tmsg.payload = \"信五路口\" + \"到了!\";\n\tmsg.word = \"信五路口\" + \"到了!\";\n}\nelse if(id == 16)\n{\n\tmsg.payload = \"市政府\" + \"到了!\";\n\tmsg.word = \"市政府\" + \"到了!\";\n}\nelse\n\tmsg.payload = \"\";\n\n//msg.payload = msg.payload + \"到了!\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 1000,
+        "wires": [
+            [
+                "3177c5b27a0230f1",
+                "f3a261673940a5e8",
+                "aa0f6a21e9fb0ad8"
+            ]
+        ]
+    },
+    {
+        "id": "3177c5b27a0230f1",
+        "type": "ui_text",
+        "z": "20188638.e58aea",
+        "group": "a042b31ae3c4eed1",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "1579B位置語音通報",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "color : red",
+        "x": 1240,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "aa0f6a21e9fb0ad8",
+        "type": "debug",
+        "z": "20188638.e58aea",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "f3a261673940a5e8",
+        "type": "ui_audio",
+        "z": "20188638.e58aea",
+        "name": "",
+        "group": "a042b31ae3c4eed1",
+        "voice": "Microsoft Zhiwei - Chinese (Traditional, Taiwan)",
+        "always": true,
+        "x": 1200,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "949f4ee229ef9e7e",
+        "type": "ui_text",
+        "z": "20188638.e58aea",
+        "group": "f9761157696ecb7d",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "1579A-客滿預警",
+        "format": "{{msg.word}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2000,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "f1ab7e4494abf8cf",
+        "type": "ui_text",
+        "z": "20188638.e58aea",
+        "group": "f9761157696ecb7d",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "1579B-客滿預警",
+        "format": "{{msg.word}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 2000,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "33d61dd8394405e7",
+        "type": "mqtt in",
+        "z": "20188638.e58aea",
+        "name": "",
+        "topic": "wang105map/feeds/bus_rfid",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "b23ae2df.ec019",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 700,
+        "y": 540,
+        "wires": [
+            [
+                "fe5eb7613da35eac",
+                "10194f37bc9a2739",
+                "ba35419ed3231179"
+            ]
+        ]
+    },
+    {
+        "id": "fe5eb7613da35eac",
+        "type": "debug",
+        "z": "20188638.e58aea",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 930,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "10194f37bc9a2739",
+        "type": "ui_text",
+        "z": "20188638.e58aea",
+        "group": "5ddd9934.f53628",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "刷卡通知",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 920,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "ba35419ed3231179",
+        "type": "ui_audio",
+        "z": "20188638.e58aea",
+        "name": "",
+        "group": "5ddd9934.f53628",
+        "voice": "",
+        "always": "",
+        "x": 920,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "4fb343181885b7a0",
+        "type": "ui_spacer",
+        "z": "20188638.e58aea",
+        "name": "spacer",
+        "group": "11e89e119480da33",
+        "order": 2,
+        "width": "",
+        "height": ""
+    },
+    {
+        "id": "5ddd9934.f53628",
+        "type": "ui_group",
+        "name": "預約推播",
+        "tab": "a051eaf3.7497c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "c982fbb8.1deb38",
+        "type": "ui_group",
+        "name": "hidden_group",
+        "tab": "",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ce6fec9e54c6cc6b",
+        "type": "ui_group",
+        "name": "現在時間",
+        "tab": "a051eaf3.7497c",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f9761157696ecb7d",
+        "type": "ui_group",
+        "name": "人數統計",
+        "tab": "a051eaf3.7497c",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a27513cc28b5c626",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "localhost",
+        "port": "3306",
+        "db": "bus",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "abe152ee4523636c",
+        "type": "ui_group",
+        "name": "歸零",
+        "tab": "a051eaf3.7497c",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a042b31ae3c4eed1",
+        "type": "ui_group",
+        "name": "目前公車位置",
+        "tab": "a051eaf3.7497c",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b23ae2df.ec019",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "io.adafruit.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "a051eaf3.7497c",
+        "type": "ui_tab",
+        "name": "公車預約系統",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
