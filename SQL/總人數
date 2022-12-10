@@ -1,0 +1,2 @@
+INSERT INTO `total` (`編號`, `line`, `total_people`) VALUES ('1', '1579A', '0');
+INSERT INTO `total` (`編號`, `line`, `total_people`) VALUES ('2', '1579B', '0');
