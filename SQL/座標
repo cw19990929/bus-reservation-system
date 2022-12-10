@@ -1,0 +1,2 @@
+INSERT INTO `position` (`line`, `address`) VALUES ('1579A', '0');
+INSERT INTO `position` (`line`, `address`) VALUES ('1579B', '0');
